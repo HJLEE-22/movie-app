@@ -14,13 +14,15 @@ struct Repository {
     private let apiKey = Bundle.main.apiKey
     typealias completion<T> = (T?, Error?) -> ()
     
-    func getMoviesPlaying(completion: @escaping completion<[Movie]>) {
-        let stringURL = "/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(apiKey)&targetDt=20220520"
+    func getMoviesPlaying(completion: @escaping completion<MoviePlayingResponse>) {
+        let stringURL = "/now_playing?api_key=\(apiKey)&language=ko&page=\(1)"
         NetworkWrapper.shared.getBasicTask(stringURL: stringURL) { result in
             switch result {
             case .success(let responseData):
-                if let data = try? jsonDecoder.decode([Movie].self, from: responseData) {
+                if let data = try? jsonDecoder.decode(MoviePlayingResponse.self, from: responseData) {
                     completion(data, nil)
+                } else {
+                    completion(nil, HTTPError.typeMismatchError)
                 }
             case .failure(let error):
                 completion(nil, error)

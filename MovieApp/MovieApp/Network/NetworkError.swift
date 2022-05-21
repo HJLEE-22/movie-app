@@ -10,18 +10,17 @@ import Foundation
 enum HTTPError: LocalizedError {
     case networkFailureError
     case typeMismatchError
-    case noTokenError
-    case tokenExpiredError
 }
 
 struct NetworkError: Error, Decodable {
-    var statusCode: Int? = 0
-    var error: String? = ""
-    var message: String? = ""
+    let statusCode: Int
+    let statusMessage: String
+    let success: Bool
     
-    struct Message: Decodable {
-        let error: String?
-        let message: String?
+    enum CodingKeys: String, CodingKey {
+        case statusCode = "status_code"
+        case statusMessage = "status_message"
+        case success
     }
 }
 
@@ -29,5 +28,5 @@ struct NetworkCommonErrors {
     private init() {}
     
     static let commonErrorMessage = "something_wrong"
-    static let typeMismatchError = NetworkError(statusCode: 200, message: "Something went wrong")
+    static let typeMismatchError = NetworkError(statusCode: 200, statusMessage: commonErrorMessage, success: true)
 }

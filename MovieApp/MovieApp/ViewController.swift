@@ -13,14 +13,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         repository.getMoviesPlaying { result, error in
+            // MARK: API 호출 성공시 데이터 반환
             if let result = result {
-                print(result)
+                dump(result)
             }
             
+            // MARK: API 호출 실패시 에러 반환
             if let error = error {
-                print(error.localizedDescription)
+                // API 에러 반환
+                dump(error)
             }
         }
     }
