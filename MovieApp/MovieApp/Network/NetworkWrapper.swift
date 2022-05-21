@@ -10,7 +10,7 @@ import Alamofire
 
 struct NetworkWrapper {
     static let shared = NetworkWrapper()
-    private let apiDomain =  "http://www.kobis.or.kr/kobisopenapi"
+    private let apiDomain =  "https://api.themoviedb.org/3/movie"
     private let jsonDecoder = JSONDecoder()
     
     private init() { }
@@ -38,9 +38,9 @@ struct NetworkWrapper {
                 }
             case .failure(let error):
                 if let responseData = response.data, let json = try? jsonDecoder.decode(NetworkError.self, from: responseData) {
-                    completion(.failure(NetworkError(statusCode: error.responseCode, error: json.message, message: json.message)))
+                    completion(.failure(NetworkError(statusCode: json.statusCode, statusMessage: json.statusMessage, success: json.success)))
                 } else {
-                    completion(.failure(NetworkError(statusCode: error.responseCode, message: error.localizedDescription)))
+                    completion(.failure(NetworkError(statusCode: error.responseCode ?? 0, statusMessage: error.errorDescription ?? "", success: false)))
                 }
             }
         }
