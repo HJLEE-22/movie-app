@@ -10,7 +10,7 @@ import Alamofire
 
 struct NetworkWrapper {
     static let shared = NetworkWrapper()
-    private var apiDomain =  "http://www.kobis.or.kr/kobisopenapi"
+    private let apiDomain =  "http://www.kobis.or.kr/kobisopenapi"
     private let jsonDecoder = JSONDecoder()
     
     private init() { }
