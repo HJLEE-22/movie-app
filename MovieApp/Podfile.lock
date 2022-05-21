@@ -1,0 +1,30 @@
+PODS:
+  - Alamofire (5.4.4)
+  - CocoaLumberjack/Core (3.7.4)
+  - CocoaLumberjack/Swift (3.7.4):
+    - CocoaLumberjack/Core
+  - Kingfisher (7.0.0)
+  - SwiftLint (0.43.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.4.3)
+  - CocoaLumberjack/Swift (~> 3.7.2)
+  - Kingfisher (= 7.0)
+  - SwiftLint (~> 0.43.1)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - CocoaLumberjack
+    - Kingfisher
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
+  SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
+
+PODFILE CHECKSUM: da879d201974c62a3db48ce35ea4644363a7ac72
+
+COCOAPODS: 1.11.3
